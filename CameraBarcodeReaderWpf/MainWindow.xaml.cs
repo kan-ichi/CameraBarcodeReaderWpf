@@ -58,14 +58,6 @@ namespace CameraBarcodeReader.Wpf
             this._captureDevice_.Start();
         }
 
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this._captureDevice_ == null) return;
-            this._captureDevice_.NewFrame -= CaptureDevice_NewFrame;
-            this._captureDevice_.SignalToStop();
-            this._captureDevice_.WaitForStop();
-        }
-
         private void CaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             if (!(this._captureDevice_.IsRunning)) return;
@@ -119,5 +111,17 @@ namespace CameraBarcodeReader.Wpf
             }
         }
 
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._captureDevice_ == null) return;
+            this._captureDevice_.NewFrame -= CaptureDevice_NewFrame;
+            this._captureDevice_.SignalToStop();
+            this._captureDevice_.WaitForStop();
+        }
+
+        private void CopyToClipboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, this.BarcodeText?.Text ?? string.Empty);
+        }
     }
 }

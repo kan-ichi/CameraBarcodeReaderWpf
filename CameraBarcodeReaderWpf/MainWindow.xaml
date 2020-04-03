@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CameraBarcodeReader.Wpf"
         mc:Ignorable="d"
         Loaded="Window_Loaded" Closing="Window_Closing"
-        Title="CameraBarcodeReaderWpf" Height="450" Width="700">
+        Title="CameraBarcodeReaderWpf" Height="450" Width="600">
     
     <Grid Margin="20,10">
         <Grid.RowDefinitions>
@@ -20,20 +20,45 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
-            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Content="Camera:"/>
-            <ComboBox Name="CameraDevice" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="550"/>
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Content="Camera :"/>
+            <ComboBox Name="CameraDevice" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="450"/>
         </StackPanel>
 
         <Image Name="CameraImage" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Top"/>
 
-        <StackPanel Grid.Row="1" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="StartButton" Click="StartButton_Click" Content="Start" HorizontalAlignment="Left" Width="75"/>
-                <Button x:Name="StopButton" Click="StopButton_Click" Content="Stop" HorizontalAlignment="Left" Width="75" Margin="10,0,0,0"/>
-            </StackPanel>
-            <TextBox x:Name="BarcodeFormat" Text="BarcodeFormat" Margin="0,10,0,0"/>
-            <TextBox x:Name="BarcodeText" Text="BarcodeText" Margin="0,10,0,0" Height="250"/>
-        </StackPanel>
+        <Grid Grid.Row="1" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1"
+                        x:Name="StartButton" Click="StartButton_Click" Content="Camera Start" HorizontalAlignment="Stretch"/>
+                <Button Grid.Row="0" Grid.RowSpan="1" Grid.Column="2" Grid.ColumnSpan="1"
+                        x:Name="StopButton" Click="StopButton_Click" Content="Camera Stop" HorizontalAlignment="Stretch"/>
+            </Grid>
+            
+            <TextBox Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1"
+                     x:Name="BarcodeFormat" Text="BarcodeFormat"/>
+            <TextBox Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1"
+                     x:Name="BarcodeText" Text="BarcodeText" AcceptsReturn="True" TextWrapping="Wrap"/>
+            <Button Grid.Row="6" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1"
+                    x:Name="CopyToClipboardButton" Click="CopyToClipboardButton_Click" Content="Copy To Clipboard" HorizontalAlignment="Stretch"/>
+        </Grid>
         
     </Grid>
     
